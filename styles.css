@@ -78,7 +78,7 @@ body{
 
 .page__films__item__rating__icon {
     background-image: url('icons/star.svg');
-    background-position: -4px 26px;
+    background-position: -4px 3px;
     height: 100%;
     background-repeat: no-repeat;
 }
@@ -120,7 +120,27 @@ body{
 .page__films__item__poster {
     display: none;
 }
-
+.page__films__item__poster:hover{
+    cursor: pointer;
+}
+.page__films__item__poster--1{
+    background-image: url("imgs/image 1.png");
+}
+.page__films__item__poster--2{
+    background-image: url("imgs/image 2.png");
+}
+.page__films__item__poster--3{
+    background-image: url("imgs/image 3.png");
+}
+.page__films__item__poster--4{
+    background-image: url("imgs/image 4.png");
+}
+.page__films__item__poster--5{
+    background-image: url("imgs/image 5.png");
+}
+.page__films__item__poster--6{
+    background-image: url("imgs/image 6.png");
+}
 .page__films__item__desc {
     display: none;
 }
@@ -141,7 +161,6 @@ body{
         display: block;
         width: 150px;
         height: 200px;
-        background-color: red;
         grid-row: 1/4;
     }
 
@@ -162,7 +181,9 @@ body{
         grid-column: 3/4;
         width: 160px;
         justify-self: right;
-        padding: 9px 0 9px 14px;
+        padding: 7px 0 9px 14px;
+        grid-column-gap: 13px;
+        align-items: center;
     }
 
     .page__films__item__rating {
@@ -193,6 +214,12 @@ body{
     .page__films__item--desktop{
         display: none;
     }
+
+    .page__films__item__button__icon {
+        width: 24px;
+        height: 24px;
+        background-size: 100%;
+    }
 }
 
 
@@ -213,19 +240,37 @@ body{
         width: 800px;
     }
     .page__films{
-        /*grid-template-columns: repeat(auto-fill, 250px);*/
-        grid-template-columns: repeat(4, 180px);
+        grid-template-columns: repeat(auto-fill, 180px);
         grid-column-gap: 27px;
         grid-row-gap: 20px;
     }
     .page__films__item__poster{
         width: 180px;
         height: 250px;
+
+    }
+    .page__films__item{
+        position: relative;
+    }
+    .page__films__item__rating__icon{
+        background-position: -6px 0;
+
     }
     .page__films__item--desktop{
-        display: block!important;
+        display: block;
     }
-    .page__films__item__rating, .page__films__item__name, .page__films__item__desc, .page__films__item__button{
+    .page__films__item__name, .page__films__item__desc, .page__films__item__button{
         display: none;
+    }
+    .page__search__input{
+        margin-bottom: 19px;
+    }
+    .page__films__item__rating{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    .page__search__input__icon{
+        right: 11px;
     }
 }
