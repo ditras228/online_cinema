@@ -26,9 +26,13 @@ body{
 
 .page__search {
     position: relative;
-
+    font-size: 12px;
+    line-height: 15px;
 }
-
+.page__films__404{
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+}
 .page__search__input {
     width: 100%;
     font-size: 10px;
@@ -126,24 +130,6 @@ body{
 }
 .page__films__item__poster:hover{
     cursor: pointer;
-}
-.page__films__item__poster--1{
-    background-image: url("imgs/image_1.png");
-}
-.page__films__item__poster--2{
-    background-image: url("imgs/image_2.png");
-}
-.page__films__item__poster--3{
-    background-image: url("imgs/image_3.png");
-}
-.page__films__item__poster--4{
-    background-image: url("imgs/image_4.png");
-}
-.page__films__item__poster--5{
-    background-image: url("imgs/image_5.png");
-}
-.page__films__item__poster--6{
-    background-image: url("imgs/image_6.png");
 }
 .page__films__item__desc {
     display: none;

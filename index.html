@@ -11,160 +11,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
-<script src="js/app.js">
-</script>
 
-<div class="page">
+<div class="page" id="app">
     <div class="page__logo">
         Онлайн-кинотеатр “HelloWorld”
     </div>
     <form class="page__search">
-        <input class="page__search__input" type="text" placeholder="Введите название фильма"/>
-        <button class="page__search__input__icon"></button>
+        <input class="page__search__input" type="text" placeholder="Введите название фильма" v-model="search"/>
+        <button class="page__search__input__icon" @click="searchFilmByName()"></button>
     </form>
     <div class="page__films">
-        <!--1-->
-
-        <div class="page__films__item">
-            <div class="page__films__item__poster page__films__item__poster--1"></div>
+        <div class="page__films__404" v-if="sFilms.length === 0">Не найдено :(</div>
+        <!--item-->
+        <div class="page__films__item" v-for="item in sFilms">
+            <div class="page__films__item__poster"
+                 v-bind:style="{ backgroundImage: 'url(' + baseURL+  item.poster + ')' }"></div>
             <div class="page__films__item__name">
-                Uncharted
+                {{ item.name }}
             </div>
             <div class="page__films__item__rating">
                 <div class="page__films__item__rating__icon">
                 </div>
                 <div class="page__films__item__rating__value">
-                    4.3
+                    {{ item.rating }}
                 </div>
             </div>
             <div class="page__films__item__desc">
-                Два искателя приключений Нейтан Дрейк и Виктор Салливан по прозвищу Салли отправляются на поиски величайшего сокровища мира. Кроме того, они надеются найти улики, которые приведут их к давно потерянному брату Нейтана.
-            </div>
-            <div class="page__films__item__button">
-                <div class="page__films__item__button__icon">
-                </div>
-                <div class="page__films__item__text">
-                    Смотреть
-                </div>
-            </div>
-
-        </div>
-        <!--2-->
-        <div class="page__films__item">
-            <div class="page__films__item__poster page__films__item__poster--2"></div>
-
-            <div class="page__films__item__name">
-				Человек-паук: Вдали от дома
-            </div>
-            <div class="page__films__item__rating">
-                <div class="page__films__item__rating__icon">
-                </div>
-                <div class="page__films__item__rating__value">
-					3.5
-                </div>
-            </div>
-            <div class="page__films__item__desc">
-                Два искателя приключений Нейтан Дрейк и Виктор Салливан по прозвищу Салли отправляются на поиски величайшего сокровища мира. Кроме того, они надеются найти улики, которые приведут их к давно потерянному брату Нейтана.
-            </div>
-            <div class="page__films__item__button">
-                <div class="page__films__item__button__icon">
-                </div>
-                <div class="page__films__item__text">
-                    Смотреть
-                </div>
-            </div>
-
-        </div>
-        <!--3-->
-        <div class="page__films__item">
-            <div class="page__films__item__poster page__films__item__poster--3"></div>
-
-            <div class="page__films__item__name">
-				Гарри Поттер и философский камень
-            </div>
-            <div class="page__films__item__rating">
-                <div class="page__films__item__rating__icon">
-                </div>
-                <div class="page__films__item__rating__value">
-					4.1
-                </div>
-            </div>
-            <div class="page__films__item__desc">
-                Жизнь десятилетнего Гарри Поттера нельзя назвать сладкой: родители умерли, едва ему исполнился год, а от дяди и тёти, взявших сироту на воспитание, достаются лишь тычки да подзатыльники. Но в одиннадцатый день рождения Гарри всё меняется. Странный гость, неожиданно появившийся на пороге, приносит письмо, из которого мальчик узнаёт, что...            </div>
-            <div class="page__films__item__button">
-                <div class="page__films__item__button__icon">
-                </div>
-                <div class="page__films__item__text">
-                    Смотреть
-                </div>
-            </div>
-
-        </div>
-        <!--4-->
-        <div class="page__films__item page__films__item--desktop">
-            <div class="page__films__item__poster page__films__item__poster--4"></div>
-
-            <div class="page__films__item__name">
-				Титаник
-            </div>
-            <div class="page__films__item__rating">
-                <div class="page__films__item__rating__icon">
-                </div>
-                <div class="page__films__item__rating__value">
-					3.7
-                </div>
-            </div>
-            <div class="page__films__item__button">
-                <div class="page__films__item__button__icon">
-                </div>
-                <div class="page__films__item__text">
-                    Смотреть
-                </div>
-            </div>
-
-        </div>
-        <!--5-->
-        <div class="page__films__item page__films__item--desktop">
-            <div class="page__films__item__poster page__films__item__poster--5"></div>
-
-            <div class="page__films__item__name">
-				King Kong
-            </div>
-            <div class="page__films__item__rating">
-                <div class="page__films__item__rating__icon">
-                </div>
-                <div class="page__films__item__rating__value">
-					5.0
-                </div>
-            </div>
-            <div class="page__films__item__button">
-                <div class="page__films__item__button__icon">
-                </div>
-                <div class="page__films__item__text">
-                    Смотреть
-                </div>
-            </div>
-
-        </div>
-        <!--6-->
-        <div class="page__films__item page__films__item--desktop">
-            <div class="page__films__item__poster page__films__item__poster--6"></div>
-
-            <div class="page__films__item__name">
-				This Gun For Hire
-            </div>
-            <div class="page__films__item__rating">
-                <div class="page__films__item__rating__icon">
-                </div>
-                <div class="page__films__item__rating__value">
-					2.5
-                </div>
+                {{item.desc}}
             </div>
             <div class="page__films__item__button">
                 <div class="page__films__item__button__icon">
@@ -177,6 +53,7 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
