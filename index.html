@@ -15,44 +15,8 @@
 </head>
 <body>
 
-<div class="page" id="app">
-    <div class="page__logo">
-        Онлайн-кинотеатр “HelloWorld”
-    </div>
-    <form class="page__search">
-        <input class="page__search__input" type="text" placeholder="Введите название фильма" v-model="search"/>
-        <button class="page__search__input__icon" @click="searchFilmByName()"></button>
-    </form>
-    <div class="page__films">
-        <div class="page__films__404" v-if="sFilms.length === 0">Не найдено :(</div>
-        <!--item-->
-        <div class="page__films__item" v-for="item in sFilms">
-            <div class="page__films__item__poster"
-                 v-bind:style="{ backgroundImage: 'url(' + baseURL+  item.poster + ')' }"></div>
-            <div class="page__films__item__name">
-                {{ item.name }}
-            </div>
-            <div class="page__films__item__rating">
-                <div class="page__films__item__rating__icon">
-                </div>
-                <div class="page__films__item__rating__value">
-                    {{ item.rating }}
-                </div>
-            </div>
-            <div class="page__films__item__desc">
-                {{item.desc}}
-            </div>
-            <div class="page__films__item__button">
-                <div class="page__films__item__button__icon">
-                </div>
-                <div class="page__films__item__text">
-                    Смотреть
-                </div>
-            </div>
+<div id="app"></div>
 
-        </div>
-    </div>
-</div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="js/app.js"></script>
 </body>
