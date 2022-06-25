@@ -15,7 +15,31 @@
 </head>
 <body>
 
-<div id="app"></div>
+<div id="app">
+    <div class="page">
+        <div class="page__logo"> Онлайн-кинотеатр “HelloWorld”</div>
+        <page-search @eventname="isLoadingHandler"  @eventload="eventLoadHandler" v-bind:films="films" ></page-search>
+        <div class="page__films__404" v-if="isLoading">Поиск...</div>
+
+        <div class="page__films" v-if="!isLoading">
+            <div class="page__films__404" v-if="sFilms.length===0">Не найдено :(</div>
+            <div class="page__films__item" v-for="item in sFilms">
+                <div class="page__films__item__poster"
+                     v-bind:style="{backgroundImage: 'url(' + baseURL+ item.poster + ')'}"></div>
+                <div class="page__films__item__name">{{item?.name}}</div>
+                <div class="page__films__item__rating">
+                    <div class="page__films__item__rating__icon"></div>
+                    <div class="page__films__item__rating__value">{{item?.rating}}</div>
+                </div>
+                <div class="page__films__item__desc">{{item?.desc}}</div>
+                <div class="page__films__item__button">
+                    <div class="page__films__item__button__icon"></div>
+                    <div class="page__films__item__text"> Смотреть</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="js/app.js"></script>

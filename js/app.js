@@ -1,9 +1,37 @@
+Vue.component('page-search', {
+    props: ['films'],
+    data: function () {
+        return {
+            search: '',
+        }
+    },
+    methods: {
+        searchFilmByName(event) {
+            this.$emit('eventname', true)
+            event.preventDefault();
+            setTimeout(function () {
+                this.$emit('eventname', false)
+                const localsFilms = []
+                if (this.search !== '') {
+                    for (i = 0; i < this.films.length; i++) {
+                        if (this.films[i].name.toLowerCase().trim().search(this.search.toLowerCase()) !== -1) {
+                            localsFilms.push(this.films[i])
+                        }
+                    }
+                    this.$emit('eventload', localsFilms)
+                }
+            }.bind(this), 1000)
+        },
+    },
+    template: '<form class="page__search"><input class="page__search__input" type="text" placeholder="Введите название фильма" v-model="search"/> <button class="page__search__input__icon" @click="searchFilmByName($event)"></button> </form>'
+})
+
 var app = new Vue({
-    template: '<div  class="page"> <div class="page__logo"> Онлайн-кинотеатр “HelloWorld” </div><form class="page__search"> <input class="page__search__input" type="text" placeholder="Введите название фильма" v-model="search"/> <button class="page__search__input__icon" @click="searchFilmByName($event)"></button> </form> <div class="page__films"> <div class="page__films__404" v-if="sFilms.length===0">Не найдено :(</div><div class="page__films__item" v-for="item in sFilms"> <div class="page__films__item__poster" v-bind:style="{backgroundImage: \'url(\' + baseURL+ item.poster + \')\'}"></div><div class="page__films__item__name">{{item?.name}}</div><div class="page__films__item__rating"> <div class="page__films__item__rating__icon"> </div><div class="page__films__item__rating__value">{{item?.rating}}</div></div><div class="page__films__item__desc">{{item?.desc}}</div><div class="page__films__item__button"> <div class="page__films__item__button__icon"> </div><div class="page__films__item__text"> Смотреть </div></div></div></div></div>',
+    template: '',
     data: {
         baseURL: 'imgs/',
-        search: '',
         sFilms: [],
+        isLoading: false,
         films: [
             {
                 id: 1,
@@ -54,29 +82,12 @@ var app = new Vue({
         init() {
             this.sFilms = this.films
         },
-
-        searchFilmByName(event) {
-            event.preventDefault();
-            this.sFilms = []
-            if (this.search !== '') {
-                for (i = 0; i < this.films.length; i++) {
-                    if (this.films[i].name.toLowerCase().trim().search(this.search.toLowerCase()) !== -1) {
-                        this.sFilms.push(this.films[i])
-                    }
-                }
-            } else {
-                this.sFilms = this.films
-            }
+        isLoadingHandler(value) {
+            this.isLoading = value
         },
-        // watch: {
-        //     search: function (value) {
-        //     },
-        //     films: function (value) {
-        //     },
-        //     sFilms: function (value) {
-        //     }
-        // },
-
+        eventLoadHandler(value) {
+            this.sFilms = value
+        }
     },
     beforeMount() {
         this.init()
