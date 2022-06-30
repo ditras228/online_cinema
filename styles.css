@@ -140,7 +140,7 @@ body{
     display: grid;
     background-color: #FFFFFF;
     border-radius: 20px;
-    padding: 30px 20px;
+    padding: 40px 20px;
     margin: 0 10px;
     justify-items: center;
 
@@ -150,6 +150,8 @@ body{
     transform: translate(-50%, -50% );
     z-index: 1;
     max-width: 600px;
+
+    grid-row-gap: 20px;
 }
 .app__bg{
     width: 100vw;
@@ -159,54 +161,71 @@ body{
     position: fixed;
     top: 0;
 }
-.app__modal__title{
-    font-size: 16px;
-    line-height: 20px;
-    font-family: 'Lobster', cursive;
-
-    margin-bottom: 15px;
+.app__modal__line{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width: 100%;
 }
-.app__modal__desc{
+.app__modal__line__title{
     font-family: 'Roboto', sans-serif;
+    text-align: left;
 }
-.app__modal__poster{
-    width: 150px;
-    height: 200px;
-    margin-bottom: 25px;
-    position: relative;
+.app__modal__line__input{
+    font-family: 'Roboto', sans-serif;
+    border-radius: 2px;
+}
+.app__modal__buttons__item, .app__modal__print__button-close{
+    font-family: 'Roboto', sans-serif;
+    background: #FF6D64;
+    padding: 9px;
+    width: 100%;
+    border: 0;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.app__modal__buttons{
+    width: 100%;
+    display: grid;
+    grid-row-gap: 5px;
+}
+.app__modal__buttons__item:hover{
+    cursor: pointer;
 }
 .app__modal__close{
     position: absolute;
     top: 15px;
     right: 20px;
 }
-.app__modal__close:hover{
-    cursor: pointer;
-}
-.app__modal__poster__rating {
+
+.app__modal__print{
     display: grid;
-    grid-template-columns: repeat(2, 20px);
-    align-items: center;
-
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    grid-row-gap: 10px;
+    width: 100%;
 }
-
-.app__modal__poster__rating__icon {
-    background-image: url('icons/star.svg');
-    background-position: -4px 3px;
-    height: 100%;
-    background-repeat: no-repeat;
+.app__modal__print__line{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-row-gap: 10px;
+    width: 100%;
 }
-
-.app__modal__poster__rating__value {
-    color: #FFB800;
-    font-size: 16px;
-    line-height: 20px;
-    font-family: 'Lobster', cursive;
+.app__modal__print__line__title{
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
 }
-
+.app__modal__print__line__value{
+    font-family: 'Roboto', sans-serif;
+    text-align: right;
+    word-break: break-all;
+}
+.app__modal__checkbox{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100%;
+    text-align: right;
+}
 @media (min-width: 800px) {
     .page{
         padding: 0;

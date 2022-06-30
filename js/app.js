@@ -33,6 +33,14 @@ var app = new Vue({
         sFilms: [],
         isLoading: false,
         currentFilm: undefined,
+
+        date: undefined,
+        time: undefined,
+        loc: undefined,
+        contacts: '',
+        isPrint: false,
+        tickedType: undefined,
+
         films: [
             {
                 id: 1,
@@ -90,8 +98,15 @@ var app = new Vue({
             this.sFilms = value
         },
         watchFilm(id){
+            this.isPrint = false
             this.currentFilm = this.films.find(film => film.id === id)
         },
+        print(){
+            this.isPrint = true
+        },
+        closePrint(){
+            this.isPrint = false
+        }
     },
     beforeMount() {
         this.init()

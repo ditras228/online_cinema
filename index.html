@@ -18,12 +18,12 @@
 <div id="app">
     <div class="page">
         <div class="page__logo"> Онлайн-кинотеатр “HelloWorld”</div>
-        <page-search @eventname="isLoadingHandler"  @eventload="eventLoadHandler" v-bind:films="films" ></page-search>
+        <page-search @eventname="isLoadingHandler" @eventload="eventLoadHandler" v-bind:films="films"></page-search>
         <div class="page__films__404" v-if="isLoading">Поиск...</div>
 
         <div class="page__films" v-if="!isLoading">
             <div class="page__films__404" v-if="sFilms.length===0">Не найдено :(</div>
-            <div class="page__films__item" v-for="item in sFilms"  v-on:click="watchFilm(item.id)">
+            <div class="page__films__item" v-for="item in sFilms" v-on:click="watchFilm(item.id)">
                 <div class="page__films__item__poster"
                      v-bind:style="{backgroundImage: 'url(' + baseURL+ item.poster + ')'}"></div>
                 <div class="page__films__item__name">{{item?.name}}</div>
@@ -39,25 +39,106 @@
             </div>
         </div>
     </div>
-    <div class="app__modal" v-if="currentFilm !== undefined">
+    <div class="app__modal" v-if="currentFilm !== undefined && isPrint !== true">
         <div class="app__modal__close" v-on:click="watchFilm(undefined)">X</div>
-        <div class="app__modal__poster"
-             v-bind:style="{backgroundImage: 'url(' + baseURL+ currentFilm.poster + ')'}">
-            <div class="app__modal__poster__rating">
-                <div class="app__modal__poster__rating__icon"></div>
-                <div class="app__modal__poster__rating__value">{{currentFilm?.rating}}</div>
+        <div class="app__modal__line">
+            <div class="app__modal__line__title">
+                Дата
             </div>
+            <input class="app__modal__line__input" type="date" v-model="date">
+        </div>
+        <div class="app__modal__line">
+            <div class="app__modal__line__title">
+                Время
+            </div>
+            <input class="app__modal__line__input" type="time" v-model="time">
+        </div>
+        <div class="app__modal__line">
+            <div class="app__modal__line__title">
+                Место
+            </div>
+            <input class="app__modal__line__input" type="number" v-model="loc">
+        </div>
+        <div class="app__modal__line">
+            <div class="app__modal__line__title">
+                Контактные <br>данные
+            </div>
+            <textarea name="" id="" cols="30" rows="3" class="app__modal__line__input" v-model="contacts"></textarea>
         </div>
 
-        <div class="app__modal__title">
-            {{currentFilm.name}}
+        <div class="app__modal__checkbox">
+            <input type="radio" id="one" value="Взрослый" v-model="tickedType">
+            <label for="one">Взрослый</label>
         </div>
-        <div class="app__modal__desc">
-            {{currentFilm.desc}}
+
+        <div class="app__modal__checkbox">
+            <input type="radio" id="two" value="Детский" v-model="tickedType">
+            <label for="two">Детский</label>
+        </div>
+
+        <div class="app__modal__checkbox">
+            <input type="radio" id="three" value="Студенческий" v-model="tickedType">
+            <label for="three">Студенческий</label>
+        </div>
+        <div class="app__modal__buttons">
+            <button class="app__modal__buttons__item" v-on:click="print()">Ок</button>
+            <button class="app__modal__buttons__item" v-on:click="watchFilm(undefined)">Закрыть</button>
         </div>
 
     </div>
-    <div  v-on:click="watchFilm(undefined)" class="app__bg" v-if="currentFilm !== undefined"></div>
+    <div v-on:click="watchFilm(undefined)" class="app__bg" v-if="currentFilm !== undefined"></div>
+
+    <div class="app__modal" v-if="isPrint">
+        <div class="app__modal__close" v-on:click="watchFilm(undefined)">X</div>
+        <div class="app__modal__print__line">
+            <div class="app__modal__print__line__title">
+                Дата
+            </div>
+            <div class="app__modal__print__line__value">
+                {{date}}
+            </div>
+        </div>
+        <div class="app__modal__print__line">
+
+            <div class="app__modal__print__line__title">
+                Время
+            </div>
+            <div class="app__modal__print__line__value">
+                {{time}}
+            </div>
+        </div>
+        <div class="app__modal__print__line">
+
+            <div class="app__modal__print__line__title">
+                Место
+            </div>
+            <div class="app__modal__print__line__value">
+                {{loc}}
+            </div>
+        </div>
+        <div class="app__modal__print__line">
+
+            <div class="app__modal__print__line__title">
+                Контактные данные
+            </div>
+            <div class="app__modal__print__line__value">
+                {{contacts}}
+            </div>
+        </div>
+        <div class="app__modal__print__line">
+
+            <div class="app__modal__print__line__title">
+                Тип билета
+            </div>
+            <div class="app__modal__print__line__value">
+                {{tickedType}}
+            </div>
+        </div>
+
+
+        <button class="app__modal__buttons__item" v-on:click="closePrint()">Закрыть</button>
+    </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
