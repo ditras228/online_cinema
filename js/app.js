@@ -20,6 +20,9 @@ Vue.component('page-search', {
                     }
                     this.$emit('eventload', localsFilms)
                 }
+                else{
+                    this.$emit('eventload', this.films)
+                }
             }.bind(this), 1000)
         },
     },

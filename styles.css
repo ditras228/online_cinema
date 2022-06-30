@@ -173,6 +173,8 @@ body{
 .app__modal__line__input{
     font-family: 'Roboto', sans-serif;
     border-radius: 2px;
+    resize: none;
+    width: 100%;
 }
 .app__modal__buttons__item, .app__modal__print__button-close{
     font-family: 'Roboto', sans-serif;
