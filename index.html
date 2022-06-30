@@ -23,7 +23,7 @@
 
         <div class="page__films" v-if="!isLoading">
             <div class="page__films__404" v-if="sFilms.length===0">Не найдено :(</div>
-            <div class="page__films__item" v-for="item in sFilms">
+            <div class="page__films__item" v-for="item in sFilms"  v-on:click="watchFilm(item.id)">
                 <div class="page__films__item__poster"
                      v-bind:style="{backgroundImage: 'url(' + baseURL+ item.poster + ')'}"></div>
                 <div class="page__films__item__name">{{item?.name}}</div>
@@ -39,6 +39,25 @@
             </div>
         </div>
     </div>
+    <div class="app__modal" v-if="currentFilm !== undefined">
+        <div class="app__modal__close" v-on:click="watchFilm(undefined)">X</div>
+        <div class="app__modal__poster"
+             v-bind:style="{backgroundImage: 'url(' + baseURL+ currentFilm.poster + ')'}">
+            <div class="app__modal__poster__rating">
+                <div class="app__modal__poster__rating__icon"></div>
+                <div class="app__modal__poster__rating__value">{{currentFilm?.rating}}</div>
+            </div>
+        </div>
+
+        <div class="app__modal__title">
+            {{currentFilm.name}}
+        </div>
+        <div class="app__modal__desc">
+            {{currentFilm.desc}}
+        </div>
+
+    </div>
+    <div  v-on:click="watchFilm(undefined)" class="app__bg" v-if="currentFilm !== undefined"></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>

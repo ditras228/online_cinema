@@ -32,6 +32,7 @@ var app = new Vue({
         baseURL: 'imgs/',
         sFilms: [],
         isLoading: false,
+        currentFilm: undefined,
         films: [
             {
                 id: 1,
@@ -87,7 +88,10 @@ var app = new Vue({
         },
         eventLoadHandler(value) {
             this.sFilms = value
-        }
+        },
+        watchFilm(id){
+            this.currentFilm = this.films.find(film => film.id === id)
+        },
     },
     beforeMount() {
         this.init()
